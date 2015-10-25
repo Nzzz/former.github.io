@@ -1,0 +1,379 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>Nzzz&#39;s blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Nzzz">
+    
+    <meta name="description" content="event事件对象1、onmousemove鼠标事件
+a、获取鼠标 可视区内的位置 clientX,clientY  IE，firefox兼容处理:12345function(ev)&amp;#123;  var oEvent=event||ev;  //IE7以下只认识event，firefox只认识ev">
+    
+    
+    
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/yaht.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/yaht.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="Nzzz&#39;s blog" title="Nzzz&#39;s blog"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Nzzz&#39;s blog">Nzzz&#39;s blog</a></h1>
+				<h2 class="blog-motto">try my best</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">存档</a></li>
+					
+					<li>
+					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:yoursite.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/10/25/javascript事件/" title="" itemprop="url"></a>
+  </h1>
+  <p class="article-author">By
+    
+      <a href="http://yoursite.com" title="Nzzz">Nzzz</a>
+    </p>
+  <p class="article-time">
+    <time datetime="2015-10-25T15:39:18.804Z" itemprop="datePublished">2015-10-25</time>
+    更新日期:<time datetime="2015-10-25T15:39:07.033Z" itemprop="dateModified">2015-10-25</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#event事件对象"><span class="toc-number">1.</span> <span class="toc-text">event事件对象</span></a></li></ol>
+		</div>
+		
+		<h3 id="event事件对象">event事件对象</h3><p>1、onmousemove鼠标事件</p>
+<p>a、获取鼠标 <strong>可视区内的位置</strong> clientX,clientY<br>  IE，firefox兼容处理:<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span><span class="params">(ev)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">  <span class="keyword">var</span> oEvent=event||ev;  <span class="comment">//IE7以下只认识event，firefox只认识ev，用||兼容取true的那个</span></span><br><span class="line">  alert(oEvent.clientX+<span class="string">','</span>+oEvent.clientY); <span class="comment">//弹出鼠标的位置</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>b、onmousemove鼠标事件带动div运动<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">doucument.onmousemove=<span class="function"><span class="keyword">function</span>(<span class="params">ev</span>)</span><br><span class="line"></span>&#123;</span><br><span class="line">  <span class="keyword">var</span> oDiv=<span class="built_in">document</span>.getElementById(<span class="string">'Div'</span>);</span><br><span class="line">  <span class="keyword">var</span> oEvent=event||ev;</span><br><span class="line">  <span class="keyword">var</span> scrollTop=<span class="built_in">document</span>.documentElement.scrollTop||<span class="built_in">document</span>.body.scrollTop;<span class="comment">//获取滚动条滚上去的高度或者视窗的高度</span></span><br><span class="line">  oDiv.style.left=oEvent.clientX+<span class="string">'px'</span>;</span><br><span class="line">  oDiv.style.top=oEvent.clientY+scrollTop+<span class="string">'px'</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p> 插入一个包装好的函数<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">//获取滚动条位置的封装函数</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getPos</span>(<span class="params">ev</span>)</span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">var</span> scrollTop=<span class="built_in">document</span>.documentElement.scrollTop||<span class="built_in">document</span>.body.scrollTop;</span><br><span class="line">    <span class="keyword">var</span> scrollLeft=<span class="built_in">document</span>.documentElement.scrollLeft||<span class="built_in">document</span>.body.scrollLeft;</span><br><span class="line">    <span class="keyword">return</span> &#123;x: ev.clientX+scrollLeft, y:ev.clientY+scrollTop &#125;        <span class="comment">//json形式的返回，调用时getPos(oEvent).x表示滚动条离左边的长度</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>2、onkeydown键盘事件（keyCode获取键盘按键）<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.onkeydown=<span class="function"><span class="keyword">function</span>(<span class="params">ev</span>)</span><br><span class="line"></span>&#123;</span><br><span class="line">    oEvent=ev||event;</span><br><span class="line">    alert(oEvent.keyCode);<span class="comment">//弹出按键的ASCII码    </span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>思考题：</p>
+<p>3、oncontextmenu右键菜单事件（有返回值）<br>　　自定义菜单（return false的使用）<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.oncontextmenu=<span class="function"><span class="keyword">function</span>(<span class="params">ev</span>)</span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">var</span> oEvent=ev||event;</span><br><span class="line">    <span class="keyword">var</span> oDiv=<span class="built_in">document</span>.getElementById(<span class="string">"div1"</span>);</span><br><span class="line">    oDiv.style.display=<span class="string">'block'</span>;   <span class="comment">//把隐藏的菜单显示出来</span></span><br><span class="line">    oDiv.style.left=oEvent.clientX+<span class="string">'px'</span>;</span><br><span class="line">    oDiv.style.top=oEvent.clientY+<span class="string">'px'</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;  <span class="comment">//阻止默认的事件，去掉原菜单</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">document</span>.onclick=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span><br><span class="line"></span>&#123;     </span><br><span class="line">    <span class="keyword">var</span> oDiv=<span class="built_in">document</span>.getElementById(<span class="string">"div1"</span>);</span><br><span class="line">    oDiv.style.display=<span class="string">'none'</span>;    <span class="comment">//左键点击隐藏菜单      	</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>4、事件的绑定（优点：多次绑定同一个动作事件可以执行多次不同的内容）<br> 用if来兼容<br>IE7下</p>
+<blockquote>
+<p>attachEvent(‘onclick’,函数);<br>  解绑detachEvent</p>
+</blockquote>
+<p>firefox和chrome下</p>
+<blockquote>
+<p>addEventListener(‘click’,函数，false);<br> 解绑removeEventListener</p>
+</blockquote>
+<p>补充：仅IE下（用if兼容）才有的“事件捕获” obj.setCapture(); 把所有的事件都锁定集中在obj对象，只有obj对象能得到事件.<br> 要想去掉锁定，释放捕获用obj.releaseCapture();</p>
+<p>作业题：1、键盘如何控制div上下左右移动<br>　　　　　　（需要解决onkeydown时div停顿的问题）<br>　　　　2、ctrl+enter提交留言小程序（ctrlKey,shiftKey,altKey）<br>　　　　3、写一个只能输入数字的输入框<br>　　  　　　（return false用于keydown可以使对应的ASCII码输不进去）<br>　　　　4、写一个在浏览器内用鼠标拖拽的div窗口<br>　　　　　　（onmousedown,onmousemove,onmouseup）<br>　　　　5、自定义滚动条（拖动div1变化div2）
+　　　　　　</p>
+<p>补充：冒泡事件出现的小问题(事件一直往高发生，例如点击时点击body后再点击就是点击html，再点击就是document)<br><figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> oEvent=ev||<span class="keyword">event</span>;</span><br><span class="line">oEvent.cancelBubble=<span class="keyword">true</span>; <span class="comment">//取消事件冒泡</span></span><br></pre></td></tr></table></figure></p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/博客/">博客</a><a href="/tags/文章/">文章</a>
+  </div>
+
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/javascript/">javascript</a>
+</div>
+
+
+
+<div class="article-share" id="share">
+
+  <div data-url="http://yoursite.com/2015/10/25/javascript事件/" data-title="Nzzz&#39;s blog" data-tsina="null" class="share clearfix">
+  </div>
+
+</div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2015/10/19/hello-world/"  title="hexo静态博客安装总结">
+ <strong>NEXT:</strong><br/> 
+ <span>hexo静态博客安装总结
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section class="comment">
+	<div class="ds-thread"></div>
+</section>
+
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+  <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#event事件对象"><span class="toc-number">1.</span> <span class="toc-text">event事件对象</span></a></li></ol>
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+			<li><a href="/categories/blog/" title="blog">blog<sup>1</sup></a></li>
+		
+			<li><a href="/categories/javascript/" title="javascript">javascript<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tags/博客/" title="博客">博客<sup>1</sup></a></li>
+		
+			<li><a href="/tags/博客，文章/" title="博客，文章">博客，文章<sup>1</sup></a></li>
+		
+			<li><a href="/tags/文章/" title="文章">文章<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  <div class="widget tag">
+<h3 class="title">友情链接</h3>
+<ul class="entry">
+<li><a href="http://zipperary.com/" title="Zippera's Blog">Zippera</a></li>
+</ul>
+</div>
+
+  <div class="rsspart">
+	<a href="null" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Nzzz. <br/>
+			This is my blog,I will show my study here.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/3175172980" target="_blank" name="weibo"></a>
+		
+		
+		
+		<a href="https://github.com/Nzzz" target="_blank" name="github"></a>
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/zhyu/yaht" target="_blank" title="YAHT">YAHT</a> © 2015 
+		
+		<a href="http://yoursite.com" target="_blank" title="Nzzz">Nzzz</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('.navbar').click(function(){
+      $('header nav').toggleClass('shownav');
+    });
+    var myWidth = 0;
+    function getSize(){
+      if( typeof( window.innerWidth ) == 'number' ) {
+        myWidth = window.innerWidth;
+      } else if( document.documentElement && document.documentElement.clientWidth) {
+        myWidth = document.documentElement.clientWidth;
+      };
+    };
+    var m = $('#main'),
+    a = $('#asidepart'),
+    c = $('.closeaside'),
+    o = $('.openaside');
+    $(window).resize(function(){
+      getSize();
+      if (myWidth >= 1024) {
+        $('header nav').removeClass('shownav');
+      }else
+      {
+        m.removeClass('moveMain');
+        a.css('display', 'block').removeClass('fadeOut');
+        o.css('display', 'none');
+        
+            $('#toc.toc-aside').css('display', 'none');
+          
+      }
+    });
+    c.click(function(){
+      a.addClass('fadeOut').css('display', 'none');
+      o.css('display', 'block').addClass('fadeIn');
+      m.addClass('moveMain');
+    });
+    o.click(function(){
+      o.css('display', 'none').removeClass('beforeFadeIn');
+      a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');
+      m.removeClass('moveMain');
+    });
+    $(window).scroll(function(){
+      o.css("top",Math.max(80,260-$(this).scrollTop()));
+    });
+  });
+</script>
+
+  <script type="text/javascript">
+    $(document).ready(function(){
+      var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+      if(ai.length>0){
+        ai.wrap('<div class="video-container" />');
+      };
+      if(ae.length>0){
+        ae.wrap('<div class="video-container" />');
+      };
+      if(ah.length==0){
+        t.css('display','none');
+      }else{
+        c.click(function(){
+          ta.css('display', 'block').addClass('fadeIn');
+        });
+        o.click(function(){
+          ta.css('display', 'none');
+        });
+        $(window).scroll(function(){
+          ta.css("top",Math.max(140,320-$(this).scrollTop()));
+        });
+      };
+    });
+  </script>
+
+
+  <script type="text/javascript">
+    $(document).ready(function(){
+      var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+      var html = [
+        '<a href="#" class="overlay" id="qrcode"></a>',
+        '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+        '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+        '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+        '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+        '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+        '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+        '<span title="Share to"></span>'
+        ].join('');
+        $this.append(html);
+        $('.article-share-qrcode').click(function(){
+          var imgSrc = $('#qrcode-pic').attr('data-src');
+          $('#qrcode-pic').attr('src', imgSrc);
+          $('#qrcode-pic').load(function(){
+            $('.qrcode strong').text(' ');
+          });
+        });
+    });
+  </script>
+
+
+  
+    <script type="text/javascript">
+      var duoshuoQuery = {short_name:"nzzz"};
+      (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+      })();
+    </script>
+  
+  
+
+
+
+
+
+
+  <div id="back-to-top">
+    <a title="返回顶部"><img src="/img/scrollup.png"/></a>
+  </div>
+  <script src="/js/back_to_top.js"></script>
+
+
+
+  </body>
+</html>
+
+<a href="https://github.com/you"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/365986a132ccd6a44c23a9169022c0b5c890c387/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png"></a>
