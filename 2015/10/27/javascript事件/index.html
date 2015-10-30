@@ -9,8 +9,8 @@
     
     <meta name="author" content="Nzzz">
     
-    <meta name="description" content="event事件对象1、onmousemove鼠标事件
-a、获取鼠标 可视区内的位置 clientX,clientY  IE，firefox兼容处理:12345function(ev)&amp;#123;  var oEvent=event||ev;  //IE7以下只认识event，firefox只认识ev">
+    <meta name="description" content="event事件对象（event.type表示事件类型,event.target表示事件的目标）1、onmousemove鼠标事件
+a、获取鼠标 可视区内的位置 clientX,clientY  IE，firefox兼容处理:12345function(ev)&amp;#123;  var oEvent=ev">
     
     
     
@@ -67,15 +67,15 @@ a、获取鼠标 可视区内的位置 clientX,clientY  IE，firefox兼容处理
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2015/10/25/javascript事件/" title="javascript事件" itemprop="url">javascript事件</a>
+      <a href="/2015/10/27/javascript事件/" title="javascript事件" itemprop="url">javascript事件</a>
   </h1>
   <p class="article-author">By
     
       <a href="http://yoursite.com" title="Nzzz">Nzzz</a>
     </p>
   <p class="article-time">
-    <time datetime="2015-10-25T15:53:05.904Z" itemprop="datePublished">2015-10-25</time>
-    更新日期:<time datetime="2015-10-25T15:53:05.904Z" itemprop="dateModified">2015-10-25</time>
+    <time datetime="2015-10-27T14:50:18.951Z" itemprop="datePublished">2015-10-27</time>
+    更新日期:<time datetime="2015-10-27T14:28:43.419Z" itemprop="dateModified">2015-10-27</time>
     
   </p>
 </header>
@@ -84,15 +84,14 @@ a、获取鼠标 可视区内的位置 clientX,clientY  IE，firefox兼容处理
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
-		<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#event事件对象"><span class="toc-number">1.</span> <span class="toc-text">event事件对象</span></a></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#event事件对象（event-type表示事件类型,event-target表示事件的目标）"><span class="toc-number">1.</span> <span class="toc-text">event事件对象（event.type表示事件类型,event.target表示事件的目标）</span></a></li></ol>
 		</div>
 		
-		<h3 id="event事件对象">event事件对象</h3><p>1、onmousemove鼠标事件</p>
+		<h3 id="event事件对象（event-type表示事件类型,event-target表示事件的目标）">event事件对象（event.type表示事件类型,event.target表示事件的目标）</h3><p>1、onmousemove鼠标事件</p>
 <p>a、获取鼠标 <strong>可视区内的位置</strong> clientX,clientY<br>  IE，firefox兼容处理:<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span><span class="params">(ev)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">  <span class="keyword">var</span> oEvent=event||ev;  <span class="comment">//IE7以下只认识event，firefox只认识ev，用||兼容取true的那个</span></span><br><span class="line">  alert(oEvent.clientX+<span class="string">','</span>+oEvent.clientY); <span class="comment">//弹出鼠标的位置</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>b、onmousemove鼠标事件带动div运动<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">doucument.onmousemove=<span class="function"><span class="keyword">function</span>(<span class="params">ev</span>)</span><br><span class="line"></span>&#123;</span><br><span class="line">  <span class="keyword">var</span> oDiv=<span class="built_in">document</span>.getElementById(<span class="string">'Div'</span>);</span><br><span class="line">  <span class="keyword">var</span> oEvent=event||ev;</span><br><span class="line">  <span class="keyword">var</span> scrollTop=<span class="built_in">document</span>.documentElement.scrollTop||<span class="built_in">document</span>.body.scrollTop;<span class="comment">//获取滚动条滚上去的高度或者视窗的高度</span></span><br><span class="line">  oDiv.style.left=oEvent.clientX+<span class="string">'px'</span>;</span><br><span class="line">  oDiv.style.top=oEvent.clientY+scrollTop+<span class="string">'px'</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p> 插入一个包装好的函数<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">//获取滚动条位置的封装函数</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getPos</span>(<span class="params">ev</span>)</span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">var</span> scrollTop=<span class="built_in">document</span>.documentElement.scrollTop||<span class="built_in">document</span>.body.scrollTop;</span><br><span class="line">    <span class="keyword">var</span> scrollLeft=<span class="built_in">document</span>.documentElement.scrollLeft||<span class="built_in">document</span>.body.scrollLeft;</span><br><span class="line">    <span class="keyword">return</span> &#123;x: ev.clientX+scrollLeft, y:ev.clientY+scrollTop &#125;        <span class="comment">//json形式的返回，调用时getPos(oEvent).x表示滚动条离左边的长度</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>2、onkeydown键盘事件（keyCode获取键盘按键）<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.onkeydown=<span class="function"><span class="keyword">function</span>(<span class="params">ev</span>)</span><br><span class="line"></span>&#123;</span><br><span class="line">    oEvent=ev||event;</span><br><span class="line">    alert(oEvent.keyCode);<span class="comment">//弹出按键的ASCII码    </span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>思考题：</p>
 <p>3、oncontextmenu右键菜单事件（有返回值）<br>　　自定义菜单（return false的使用）<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.oncontextmenu=<span class="function"><span class="keyword">function</span>(<span class="params">ev</span>)</span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">var</span> oEvent=ev||event;</span><br><span class="line">    <span class="keyword">var</span> oDiv=<span class="built_in">document</span>.getElementById(<span class="string">"div1"</span>);</span><br><span class="line">    oDiv.style.display=<span class="string">'block'</span>;   <span class="comment">//把隐藏的菜单显示出来</span></span><br><span class="line">    oDiv.style.left=oEvent.clientX+<span class="string">'px'</span>;</span><br><span class="line">    oDiv.style.top=oEvent.clientY+<span class="string">'px'</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;  <span class="comment">//阻止默认的事件，去掉原菜单</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">document</span>.onclick=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span><br><span class="line"></span>&#123;     </span><br><span class="line">    <span class="keyword">var</span> oDiv=<span class="built_in">document</span>.getElementById(<span class="string">"div1"</span>);</span><br><span class="line">    oDiv.style.display=<span class="string">'none'</span>;    <span class="comment">//左键点击隐藏菜单      	</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>4、事件的绑定（优点：多次绑定同一个动作事件可以执行多次不同的内容）<br> 用if来兼容<br>IE7下</p>
 <blockquote>
@@ -105,7 +104,11 @@ a、获取鼠标 可视区内的位置 clientX,clientY  IE，firefox兼容处理
 <p>补充：仅IE下（用if兼容）才有的“事件捕获” obj.setCapture(); 把所有的事件都锁定集中在obj对象，只有obj对象能得到事件.<br> 要想去掉锁定，释放捕获用obj.releaseCapture();</p>
 <p>作业题：1、键盘如何控制div上下左右移动<br>　　　　　　（需要解决onkeydown时div停顿的问题）<br>　　　　2、ctrl+enter提交留言小程序（ctrlKey,shiftKey,altKey）<br>　　　　3、写一个只能输入数字的输入框<br>　　  　　　（return false用于keydown可以使对应的ASCII码输不进去）<br>　　　　4、写一个在浏览器内用鼠标拖拽的div窗口<br>　　　　　　（onmousedown,onmousemove,onmouseup）<br>　　　　5、自定义滚动条（拖动div1变化div2）
 　　　　　　</p>
-<p>补充：冒泡事件出现的小问题(事件一直往高发生，例如点击时点击body后再点击就是点击html，再点击就是document)<br><figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> oEvent=ev||<span class="keyword">event</span>;</span><br><span class="line">oEvent.cancelBubble=<span class="keyword">true</span>; <span class="comment">//取消事件冒泡</span></span><br></pre></td></tr></table></figure></p>
+<p>补充：1、事件冒泡出现的小问题(事件一直往高发生，例如点击时点击body后再点击就是点击html，再点击就是document)<br><figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> oEvent=ev||<span class="keyword">event</span>;</span><br><span class="line">oEvent.cancelBubble=<span class="keyword">true</span>; <span class="comment">//取消事件冒泡,或者使用下面的  </span></span><br><span class="line"><span class="comment">//oEvent.stopPropagation()</span></span><br></pre></td></tr></table></figure></p>
+<p>2、阻止 <strong>默认行为</strong> 的两种方法(可阻止标签默认如<a>的链接，浏览器自带的作用)</a></p>
+<blockquote>
+<p>return false   或  event.preventDefault();</p>
+</blockquote>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -125,7 +128,7 @@ a、获取鼠标 可视区内的位置 clientX,clientY  IE，firefox兼容处理
 
 <div class="article-share" id="share">
 
-  <div data-url="http://yoursite.com/2015/10/25/javascript事件/" data-title="javascript事件 | Nzzz&#39;s blog" data-tsina="null" class="share clearfix">
+  <div data-url="http://yoursite.com/2015/10/27/javascript事件/" data-title="javascript事件 | Nzzz&#39;s blog" data-tsina="null" class="share clearfix">
   </div>
 
 </div>
@@ -157,7 +160,7 @@ a、获取鼠标 可视区内的位置 clientX,clientY  IE，firefox兼容处理
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
-  <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#event事件对象"><span class="toc-number">1.</span> <span class="toc-text">event事件对象</span></a></li></ol>
+  <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#event事件对象（event-type表示事件类型,event-target表示事件的目标）"><span class="toc-number">1.</span> <span class="toc-text">event事件对象（event.type表示事件类型,event.target表示事件的目标）</span></a></li></ol>
   </div>
 
 <div id="asidepart">
